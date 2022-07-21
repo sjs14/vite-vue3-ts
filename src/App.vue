@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import { useTestStore } from './store/index';
+import { storeToRefs } from 'pinia';
+import { useTestStore, useAsideStore } from './store/index'
 const test = useTestStore()
-test.$state = {
-  name: 'skp',
-  age: 1,
+
+const aside = useAsideStore()
+
+const { name, age } = storeToRefs(test)
+const addHandle = () => {
+  age.value++
 }
 </script>
 
 <template>
-  <section class="App">
-    <p>{{ test.name }}</p>
-  </section>
+  <div class="App">
+    <p>{{ name }}</p>
+    <p>{{ age }}</p>
+    <p>{{ aside.aside }}</p>
+    <button @click="addHandle">add</button>
+  </div>
 </template>
 
 <style lang="less" scoped>

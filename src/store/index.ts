@@ -1,17 +1,34 @@
-import { defineStore } from 'pinia'
-import { Names } from './store-name'
+import {defineStore} from 'pinia'
 
-export const useTestStore = defineStore(Names.TEST, {
-    state() {
+const enum Names{
+    TEST = 'test',
+    ASIDE = 'aside'
+}
+
+
+
+export const useTestStore = defineStore(Names.TEST,{
+    state(){
         return {
-            name: 'sjs',
-            age: 31
+            name:'sjs',
+            age:31,
+            list:[1,2,3]
         }
     },
-    getters: {},
-    actions: {
-        setAge(num: number) {
+    actions:{
+        setName(name:string,num:number){
+            this.name = name
             this.age = num
+            // console.log('setName'); 
+            return Promise.resolve(22)
         }
     }
-})
+}) 
+
+export const useAsideStore = defineStore(Names.ASIDE,{
+    state(){
+        return {
+            aside:'sjs',
+        }
+    }
+}) 

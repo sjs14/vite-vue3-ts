@@ -12,5 +12,7 @@ pinia.use(piniaPlugin({
 }))
 app.use(pinia)
 
+import router from './router'
+app.use(router)
 
 app.mount('#app')
